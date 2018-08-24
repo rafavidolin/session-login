@@ -39,13 +39,14 @@
       <p></p>
     </main>
     <table class="table table-bordered">
-      <thead>
+      <thead id="tableUsers">
         <tr>
           <th scope="col">#</th>
           <th scope="col">Nome</th>
           <th scope="col">E-mail</th>
           <th scope="col">Senha</th>
         </tr>
+	
       </thead>
       <tbody>
       </tbody>
@@ -70,6 +71,13 @@
   <script src="../assets/js/models/user.js"></script>
   <script src="../assets/js/controllers/manageUsers.js"></script>
   <script src="../assets/js/home.js"></script>
+  <script>
+    var userStorage = localStorage.getItem("users");
+	var users = JSON.parse(userStorage);  
+	for (i = 0; i < users.length; i++) { 
+		$('#tableUsers').append('<td>btn</td><td>'+users[i].name+'</td><td>'+users[i].email+'</td><td>'+users[i].password+'</td>');
+	}
+  </script>
 </body>
 
 </html>
