@@ -75,7 +75,7 @@
     var userStorage = localStorage.getItem("users");
 	var users = JSON.parse(userStorage);  
 	for (i = 0; i < users.length; i++) { 
-		$('#tableUsers').append('<td>btn</td><td>'+users[i].name+'</td><td>'+users[i].email+'</td><td>'+users[i].password+'</td>');
+		$('#tableUsers').append('<tr><td>btn</td><td>'+users[i].name+'</td><td>'+users[i].email+'</td><td>'+users[i].password+'</td></tr>');
 	}
   </script>
 </body>
