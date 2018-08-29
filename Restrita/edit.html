@@ -26,31 +26,71 @@
         <h3 class="masthead-brand">Cover</h3>
         <nav class="nav nav-masthead justify-content-center">
           <a class="nav-link " href="../home.html">Home</a>
-          <a class="nav-link active" href="index.html">Restrita</a>
-          <a class="nav-link" href="edit.html" id="login"></a>
+          <a class="nav-link" href="index.html">Restrita</a>
+          <a class="nav-link active" href="edit.html" id="login"></a>
           <a class="nav-link" href="#" id="logout">
             <i class="fas fa-sign-out-alt"></i>
           </a>
         </nav>
       </div>
     </header>
-    <main role="main" class="inner cover">
-      <h1 class="cover-heading">Tabela dos Usuarios</h1>
+    <main role="main" class="inner cover">     
       <p></p>
     </main>
-    <table class="table table-bordered">
-      <thead id="tableUsers">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nome</th>
-          <th scope="col">E-mail</th>
-          <th scope="col">Senha</th>
-        </tr>
 	
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
+	<div class="container">
+    <div class="row m-y-2">
+        <!-- edit form column -->
+        <div class="col-lg-4 text-lg-center">
+            <h2>Editar usuario</h2>
+        </div>
+        <div class="col-lg-8">
+            <div class="alert alert-info alert-dismissable"> <a class="panel-close close" data-dismiss="alert">×</a>
+               <strong>Edite</strong> seu perfil aqui.
+            </div>
+        </div>
+        <div class="col-lg-8 push-lg-4 personal-info">
+             <form role="form">
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Nome</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" value="nome" />
+                    </div>
+                </div>            
+			
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="email" value="email@email.com" />
+                    </div>
+                </div>            
+              
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="password" value="11111122333" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="password" value="11111122333" />
+                    </div>
+                </div>
+				
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                    <div class="col-lg-9">
+					<input type="button" class="btn btn-secondary" href="../index.html" value="Voltar" />
+                        <input type="reset" class="btn btn-secondary" value="Limpar" />
+                        <input type="button" class="btn btn-primary" value="Salvar" />
+                    </div>
+                </div>
+            </form>
+        </div>        
+    </div>
+</div>
+<hr />
 	
     <footer class="mastfoot mt-auto">
       <div class="inner">
@@ -70,7 +110,7 @@
         <ul class="dropdown-menu" role="menu">
    
             <li>
-                <a class="dialog-update-item" id="edit-UserNameEdit" style="color: black" href="edit.html", title="Edit">
+                <a class="dialog-update-item" id="edit-UserNameEdit" style="color: black" href="", title="Edit">
                     <i ></i>&nbsp;Edit
                 </a>
             </li>
@@ -81,8 +121,7 @@
             </li>
         </ul>
     </div>
-</script>
-  
+</script>  
   
   <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -105,7 +144,7 @@
 	
 	$('#tableUsers').find('tr[id=valuesTr]').remove();
 	for (i = 0; i < users.length; i++) { 
-		var email = users[i].email.replace('@','_').replace('.', '_')
+		var email = users[i].email.replace('@','_')
 	
 	
 		$('#tableUsers').append('<tr id="valuesTr"><td id="btntd'+email+'"></td><td>'+users[i].name+'</td><td>'+users[i].email+'</td><td>'+users[i].password+'</td></tr>');
@@ -120,7 +159,7 @@
 	function RemoveItem(item){
 	var test = item;
 	var user = item.id.split('-');
-	var emailUsuario = user[1].replace('_','@').replace('_','.')
+	var emailUsuario = user[1].replace('_','@')
 	var usuarioLogado = ManageUsers.logged();
 	if(usuarioLogado.email == emailUsuario){
 		alert("Não é possivel deletar o usuario logado.")
