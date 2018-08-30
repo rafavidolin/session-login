@@ -28,7 +28,7 @@
           <a class="nav-link " href="../home.html">Home</a>
           <a class="nav-link active" href="index.html">Restrita</a>
           <a class="nav-link" href="edit.html" id="login"></a>
-          <a class="nav-link" href="#" id="logout">
+          <a class="nav-link" href="../home.html" id="logout">
             <i class="fas fa-sign-out-alt"></i>
           </a>
         </nav>
@@ -70,7 +70,7 @@
         <ul class="dropdown-menu" role="menu">
    
             <li>
-                <a class="dialog-update-item" id="edit-UserNameEdit" style="color: black" href="edit.html", title="Edit">
+                <a class="dialog-update-item" id="edit-UserNameEdit" onclick="SetUserEdit(this)" style="color: black" href="edit.html", title="Edit">
                     <i ></i>&nbsp;Edit
                 </a>
             </li>
@@ -97,6 +97,7 @@
   <script src="../assets/js/home.js"></script>
  
  <script>
+ $("#logout").click(ManageUsers.logout);
   LoadTable();
   
   function LoadTable(){
@@ -118,13 +119,13 @@
   
 	
 	function RemoveItem(item){
-	var test = item;
 	var user = item.id.split('-');
 	var emailUsuario = user[1].replace('_','@').replace('_','.')
+	if (confirm('Você tem certeza que deseja remover o usuario com o email: ' + emailUsuario)) {	
 	var usuarioLogado = ManageUsers.logged();
+	var removerUsuarioLogado = false;
 	if(usuarioLogado.email == emailUsuario){
-		alert("Não é possivel deletar o usuario logado.")
-		return;
+		removerUsuarioLogado = true;
 	}
 	
 	var userStorage = localStorage.getItem("users");
@@ -135,7 +136,22 @@
 	}
 	}
 	localStorage.setItem("users", JSON.stringify(jsonItem));
-	LoadTable();
+	if(removerUsuarioLogado==true){	
+		sessionStorage.removeItem("user");
+		window.location.href = "../home.html";
+	}else{
+		LoadTable();
+	}	
+	} else {
+		return false;
+	}
+}
+
+function SetUserEdit(item){
+	var user = item.id.split('-');
+	var emailUsuario = user[1].replace('_','@').replace('_','.')
+	
+	localStorage.setItem("emailToEdit", emailUsuario);
 }
 	
   </script>

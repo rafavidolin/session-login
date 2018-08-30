@@ -3,7 +3,10 @@ $(document).ready(function () {
         $password = $("#password");
 
     $("form").submit(function (ev) {
-        if (!ManageUsers.login($email.val(), $password.val()))
-            ev.preventDefault();
+        if (!ManageUsers.login($email.val(), $password.val())){
+			alert('Usuario não encontrado')
+			ev.preventDefault();
+		}
+            
     });
 });
